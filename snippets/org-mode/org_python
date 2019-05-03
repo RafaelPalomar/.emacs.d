@@ -1,0 +1,18 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: org_python
+# key: org_python
+# binding: direct-keybinding
+# --
+
+#+BEGIN_SRC python :results file :exports results :session org_org
+#Remember to return something (i.e. 'org.png'):
+#  clf()
+#  plot(np.sin(np.arange(0,7,0.1)))
+#  plt.savefig('org.png', transparent=True, bbox_inches='tight')
+#  'org.png'
+
+
+#+END_SRC
+
+
+

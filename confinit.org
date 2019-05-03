@@ -3,8 +3,56 @@
 * Repos
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-
 #+END_SRC
+* org-mode
+  #+BEGIN_SRC emacs-lisp
+    (use-package org
+      :ensure t
+      :pin org)
+
+    ;; Set TODO-like keywords
+    (setq org-todo-keywords
+          '((sequence "TODO" "STARTED" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED")))
+
+    (setq org-confirm-babel-evaluate nil)
+
+    (use-package org-bullets
+      :ensure t
+      :config
+      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  #+END_SRC
+* Company
+  #+BEGIN_SRC emacs-lisp
+    (use-package company
+      :ensure t
+      :config
+      (setq company-idle-delay 0)
+      (setq company-minimum-prefix-length 3)
+
+      (global-company-mode t)
+      )
+
+    (defun my/python-mode-hook ()
+      (add-to-list 'company-backends 'company-jedi))
+
+    (add-hook 'python-mode-hook 'my/python-mode-hook)
+    (use-package company-jedi
+      :ensure t
+      :config
+      (add-hook 'python-mode-hook 'jedi:setup)
+      )
+
+    (defun my/python-mode-hook ()
+      (add-to-list 'company-backends 'company-jedi))
+
+    (add-hook 'python-mode-hook 'my/python-mode-hook)
+
+    ;; company box mode
+                                            ;(use-package company-box
+                                            ;:ensure t
+                                            ;  :hook (company-mode . company-box-mode)) 
+
+  #+END_SRC
 * Interface tweaks
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
@@ -25,45 +73,36 @@
   Swiper gives us a really efficient incremental search with regular expressions
   and Ivy / Counsel replace a lot of ido or helms completion functionality
   #+BEGIN_SRC emacs-lisp
-  
+    (use-package counsel
+      :ensure t
+      :bind
+      (("M-y" . counsel-yank-pop)
+       :map ivy-minibuffer-map
+       ("M-y" . ivy-next-line)))
 
+    (use-package ivy
+      :ensure t
+      :diminish (ivy-mode)
+      :bind (("C-x b" . ivy-switch-buffer))
+      :config
+      (ivy-mode 1)
+      (setq ivy-use-virtual-buffers t)
+      (setq ivy-count-format "%d/%d ")
+      (setq ivy-display-style 'fancy))
 
-
-   (use-package counsel
-:ensure t
-  :bind
-  (("M-y" . counsel-yank-pop)
-   :map ivy-minibuffer-map
-   ("M-y" . ivy-next-line)))
-
-
-
-
-  (use-package ivy
-  :ensure t
-  :diminish (ivy-mode)
-  :bind (("C-x b" . ivy-switch-buffer))
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "%d/%d ")
-  (setq ivy-display-style 'fancy))
-
-
-  (use-package swiper
-  :ensure t
-  :bind (("C-s" . swiper-isearch)
-	 ("C-r" . swiper-isearch)
-	 ("C-c C-r" . ivy-resume)
-	 ("M-x" . counsel-M-x)
-	 ("C-x C-f" . counsel-find-file))
-  :config
-  (progn
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-display-style 'fancy)
-    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-    ))
+    (use-package swiper
+      :ensure t
+      :bind (("C-s" . swiper-isearch)
+             ("C-r" . swiper-isearch)
+             ("C-c C-r" . ivy-resume)
+             ("M-x" . counsel-M-x)
+             ("C-x C-f" . counsel-find-file))
+      :config
+      (progn
+        (ivy-mode 1)
+        (setq ivy-use-virtual-buffers t)
+        (setq ivy-display-style 'fancy)
+        (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)))
   #+END_SRC
 
 * Autocomplete
@@ -76,41 +115,6 @@
        (global-auto-complete-mode t)
       ))
   #+END_SRC
-* Company
-#+BEGIN_SRC emacs-lisp
-(use-package company
-:ensure t
-:config
-(setq company-idle-delay 0)
-(setq company-minimum-prefix-length 3)
-
-(global-company-mode t)
-)
-
-
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-
-(add-hook 'python-mode-hook 'my/python-mode-hook)
-(use-package company-jedi
-    :ensure t
-    :config
-    (add-hook 'python-mode-hook 'jedi:setup)
-       )
-
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-
-(add-hook 'python-mode-hook 'my/python-mode-hook)
-
-;; company box mode
-;(use-package company-box
-;:ensure t
-;  :hook (company-mode . company-box-mode)) 
-
-
-#+END_SRC
-
 * Flycheck
   #+BEGIN_SRC emacs-lisp
     (use-package flycheck
@@ -119,38 +123,25 @@
       (global-flycheck-mode t))
 
   #+END_SRC
-* Python
+* Jedi
   #+BEGIN_SRC emacs-lisp
-
-        (setq py-python-command "python3")
-        (setq python-shell-interpreter "python3")
- 
-
-            (use-package elpy
-            :ensure t
-            :config 
-            (elpy-enable))
-
-        (use-package virtualenvwrapper
-          :ensure t
-          :config
-          (venv-initialize-interactive-shells)
-          (venv-initialize-eshell))
-
-  #+END_SRC
-
-  #+RESULTS:
-  : t
-
-* Yasnippet
-  #+BEGIN_SRC emacs-lisp
-    (use-package yasnippet
+    (use-package jedi
       :ensure t
       :init
-        (yas-global-mode 1))
+      (add-hook 'python-mode-hook 'jedi:setup)
+      (add-hook 'python-mode-hook 'jedi:ac-setup))
+    
+  #+END_SRC
+ 
+* Yasnippet
+  #+BEGIN_SRC emacs-lisp
+	(use-package yasnippet
+	  :ensure t
+	  :init
+	    (yas-global-mode 1))
 
-;    (use-package yasnippet-snippets
-;      :ensure t)
+					    ;    (use-package yasnippet-snippets
+					    ;      :ensure t)
   #+END_SRC
 
 * iBuffer
@@ -200,3 +191,55 @@
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 #+END_SRC
+* PlantUML
+  #+BEGIN_SRC emacs-lisp
+    (use-package plantuml-mode
+      :ensure t)
+
+    (setq plantuml-jar-path (expand-file-name "~/.emacs.d/plantuml.jar"))
+  #+END_SRC
+** Plantuml org integration
+   #+BEGIN_SRC emacs-lisp
+     (org-babel-do-load-languages
+      'org-babel-load-languages
+      '(;; other Babel languages
+	(plantuml . t)))
+
+     (setq org-plantuml-jar-path
+	   (expand-file-name "~/.emacs.d/plantuml.jar"))
+
+     (setq org-babel-default-header-args:plantuml
+	   '((:results . "file")
+	     (:exports . "results")
+	     (:java . "-Dfile.encoding=UTF-8 -Djava.awt.headless=true")))
+   #+END_SRC
+* CMake
+  #+BEGIN_SRC emacs-lisp
+    (use-package cmake-mode
+      :ensure t)
+  #+END_SRC
+* Doxymacs
+  #+BEGIN_SRC emacs-lisp
+    (require 'doxymacs)
+    (add-hook 'c-mode-common-hook'doxymacs-mode)
+  #+END_SRC
+* Gist
+  #+BEGIN_SRC emacs-lisp
+    (use-package gist
+      :ensure t)
+  #+END_SRC
+
+* Magit
+  #+BEGIN_SRC emacs-lisp
+    (use-package magit
+      :ensure t
+      :init
+      (progn
+        (bind-key "C-x g" 'magit-status)))
+  #+END_SRC
+* Misc configurations
+  #+BEGIN_SRC emacs-lisp
+  ;; Disable menu-bar
+  (menu-bar-mode -1)  
+  #+END_SRC
+

@@ -1,0 +1,20 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: meeting_minutes
+# key: meeting
+# binding: direct-keybinding
+# --
+
+#+LaTeX_CLASS_OPTIONS: [a4wide]
+#+LaTeX_HEADER: \usepackage[T1]{fontenc} 
+#+LaTeX_HEADER: \usepackage[adobe-utopia]{mathdesign}
+#+LaTeX_HEADER: \usepackage[scaled]{berasans} 
+#+LaTeX_HEADER: \usepackage[scaled]{beramono}
+#+LaTeX_HEADER: \usepackage{geometry}
+#+LaTeX_HEADER: \usepackage{xcolor}
+#+LaTeX_HEADER: \geometry{a4paper, textwidth=7in, textheight=10.5in, marginparsep=7pt, marginparwidth=.6in}
+#+OPTIONS: toc:nil        no default TOC at all
+#+Title:
+#+Author:
+#+LATEX: %\includegraphics[width=\textwidth]{/home/rafael/Dropbox/projects/Prism/Art/header_minutes.png}
+#+LATEX: June 13, 2016
+
