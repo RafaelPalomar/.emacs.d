@@ -123,9 +123,6 @@
     ;; Bind C-c C-b to ibuffer
     (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-    ;; Bind magit-status to F9
-    (global-set-key (kbd "<f9>") 'magit-status)
-
     ;; Bind compile F5
     (global-set-key (kbd "<f5>") 'compile)
 
@@ -204,7 +201,24 @@
       :ensure t
       :init
       (progn
-        (bind-key "C-x g" 'magit-status)))
+        (bind-key (kbd "<f9>") 'magit-status)))
+  #+END_SRC
+* Powerline
+  #+BEGIN_SRC emacs-lisp
+    (use-package powerline
+      :ensure t
+      :init
+      (setq powerline-default-separator 'curve
+            powerline-default-separator-dir (quote (left . right))
+            powerline-height 28
+            powerline-display-buffer-size nil
+            powerline-display-hud nil
+            powerline-display-mule-info nil
+            powerline-gui-use-vcs-glyph t
+            powerline-inactive1 '((t (:background "grey11" :foreground "#c5c8c6")))
+            powerline-inactive2 '((t (:background "grey20" :foreground "#c5c8c6")))))
+
+    (powerline-center-theme)
   #+END_SRC
 * Misc configurations
   #+BEGIN_SRC emacs-lisp
