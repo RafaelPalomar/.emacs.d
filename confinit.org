@@ -226,3 +226,9 @@
   (menu-bar-mode -1)  
   #+END_SRC
 
+* Theme
+  #+BEGIN_SRC emacs-lisp
+    (use-package color-theme-sanityinc-tomorrow
+      :ensure t)
+  #+END_SRC
+
