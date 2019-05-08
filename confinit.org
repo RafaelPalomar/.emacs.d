@@ -272,9 +272,22 @@
       :init
       (beacon-mode 1))
   #+END_SRC
-* Theme
-  #+BEGIN_SRC emacs-lisp
-    (use-package color-theme-sanityinc-tomorrow
-      :ensure t)
-  #+END_SRC
 
+* Electric pair
+  #+BEGIN_SRC emacs-lisp
+    (setq electric-pair-pairs '(
+                                (?\( .?\))
+                                (?\[ .?\])
+                                (?\{ .?\})
+                                (?\" .?\")
+                                (?\' .?\')
+                                ))
+    (electric-pair-mode t)
+  #+END_SRC
+* Hungry-delete
+  #+BEGIN_SRC emacs-lisp
+    (use-package hungry-delete
+      :ensure t
+      :config
+      (global-hungry-delete-mode)) 
+  #+END_SRC
