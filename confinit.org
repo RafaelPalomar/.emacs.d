@@ -257,6 +257,9 @@
 
     ;; Highlight cursor line (only in with X gui)
     (when window-system (global-hl-line-mode t))
+
+    ;; Prettify symbols
+    (global-prettify-symbols-mode t)
   #+END_SRC
 * Theme
   #+BEGIN_SRC emacs-lisp
