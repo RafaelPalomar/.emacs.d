@@ -251,8 +251,10 @@
 
     ;; Disable scroll-bar
     (scroll-bar-mode -1)
-  #+END_SRC
 
+    ;; Disable the ring bell
+    (setq ring-bell-function 'ignore)
+  #+END_SRC
 * Theme
   #+BEGIN_SRC emacs-lisp
     (use-package color-theme-sanityinc-tomorrow
