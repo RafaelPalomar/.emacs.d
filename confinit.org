@@ -5,24 +5,35 @@
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 #+END_SRC
 * org-mode
-  #+BEGIN_SRC emacs-lisp
-    (use-package org
-      :ensure t
-      :pin org)
+** Basic org
+   #+BEGIN_SRC emacs-lisp
+     (use-package org
+       :ensure t
+       :pin org)
 
-    ;; Set TODO-like keywords
-    (setq org-todo-keywords
-          '((sequence "TODO" "STARTED" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED")))
+        (use-package org-bullets
+       :ensure t
+       :config
+       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+   #+END_SRC
+** org-customizations
+   #+BEGIN_SRC emacs-lisp
 
-    (setq org-confirm-babel-evaluate nil)
+     ;; Set TODO-like keywords
+     (setq org-todo-keywords
+           '((sequence "TODO" "STARTED" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED")))
+     ;; Don't ask confirmation for babel snippets execution. Particularly useful for
+     ;; creating presentations.
+     (setq org-confirm-babel-evaluate nil)
 
-    (use-package org-bullets
-      :ensure t
-      :config
-      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-
-    (setq org-src-fontify-natively t)
-  #+END_SRC
+     ;; Fontify native code inside code blocks in org
+     (setq org-src-fontify-natively t)
+   #+END_SRC
+** org-beautify
+   #+BEGIN_SRC emacs-lisp
+     (use-package org-beautify-theme
+       :ensure t)        
+   #+END_SRC
 * Auto-complete
   #+BEGIN_SRC emacs-lisp
     (use-package auto-complete 
