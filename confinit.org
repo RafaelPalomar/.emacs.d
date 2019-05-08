@@ -259,7 +259,18 @@
     (when window-system (global-hl-line-mode t))
 
     ;; Prettify symbols
-    (global-prettify-symbols-mode t)
+    (when window-system (global-prettify-symbols-mode t))
+
+    ;; Disable backup files and auto-save
+    (setq make-backup-files nil)
+    (setq auto-save-default nil)
+  #+END_SRC
+* Beacon
+  #+BEGIN_SRC emacs-lisp
+    (use-package beacon
+      :ensure t
+      :init
+      (beacon-mode 1))
   #+END_SRC
 * Theme
   #+BEGIN_SRC emacs-lisp
