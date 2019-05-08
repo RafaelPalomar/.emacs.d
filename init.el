@@ -35,6 +35,7 @@
  '(package-selected-packages
    (quote
     (powerline org-bullets zerodark-theme zenburn-theme which-key virtualenvwrapper use-package tao-theme poet-theme plantuml-mode moe-theme jedi gist flycheck faff-theme elpy doom-themes doom-modeline counsel company-jedi color-theme-modern cmake-mode base16-theme all-the-icons-ivy all-the-icons-dired alect-themes)))
+ '(tool-bar-mode nil)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -63,4 +64,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 143 :width normal)))))
