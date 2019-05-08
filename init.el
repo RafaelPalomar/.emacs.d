@@ -34,7 +34,7 @@
  '(frame-background-mode (quote dark))
  '(package-selected-packages
    (quote
-    (powerline org-bullets zerodark-theme zenburn-theme which-key virtualenvwrapper use-package tao-theme poet-theme plantuml-mode moe-theme jedi gist flycheck faff-theme elpy doom-themes doom-modeline counsel company-jedi color-theme-modern cmake-mode base16-theme all-the-icons-ivy all-the-icons-dired alect-themes)))
+    (org-beautify-theme powerline org-bullets zerodark-theme zenburn-theme which-key virtualenvwrapper use-package tao-theme poet-theme plantuml-mode moe-theme jedi gist flycheck faff-theme elpy doom-themes doom-modeline counsel company-jedi color-theme-modern cmake-mode base16-theme all-the-icons-ivy all-the-icons-dired alect-themes)))
  '(tool-bar-mode nil)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
