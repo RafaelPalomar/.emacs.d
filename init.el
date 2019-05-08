@@ -1,7 +1,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-	     '("melpa" . "https://stable.melpa.org/packages/"))
+	     '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
 ;; Bootstrap `use-package'
