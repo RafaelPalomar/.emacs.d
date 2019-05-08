@@ -254,6 +254,9 @@
 
     ;; Disable the ring bell
     (setq ring-bell-function 'ignore)
+
+    ;; Highlight cursor line (only in with X gui)
+    (when window-system (global-hl-line-mode t))
   #+END_SRC
 * Theme
   #+BEGIN_SRC emacs-lisp
