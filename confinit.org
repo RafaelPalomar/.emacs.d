@@ -298,3 +298,10 @@
       :init
       (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
   #+END_SRC
+* Expand region
+  #+BEGIN_SRC emacs-lisp
+    (use-package expand-region
+      :ensure t)
+
+    (global-set-key (kbd "C-=") 'er/expand-region)
+  #+END_SRC
