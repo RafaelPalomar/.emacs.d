@@ -28,6 +28,17 @@
 
      ;; Fontify native code inside code blocks in org
      (setq org-src-fontify-natively t)
+
+     ;; Recursively open agenda
+     (load-library "find-lisp")
+     (setq org-agenda-files
+     (find-lisp-find-files "~/nextcloud/" "\.org$"))
+
+     ;; Archive file based on week
+     (setq org-archive-location (concat "~/nextcloud/org-archive/archive-"
+                                       (format-time-string "%Y_%m_%W" (current-time))
+                                       ".org_archive::"))
+
    #+END_SRC
 ** org-beautify
    #+BEGIN_SRC emacs-lisp
@@ -172,6 +183,16 @@
       :ensure t)
 
     (setq plantuml-jar-path (expand-file-name "~/.emacs.d/plantuml.jar"))
+
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '(
+       (plantuml . t)))
+
+    (setq org-babel-default-header-args:plantuml
+	  '((:results . "file")
+	    (:exports . "results")
+		(:java . "-Dfile.encoding=UTF-8 -Djava.awt.headless=true")))
   #+END_SRC
 ** Plantuml org integration
    #+BEGIN_SRC emacs-lisp

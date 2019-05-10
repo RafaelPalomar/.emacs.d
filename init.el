@@ -32,6 +32,7 @@
  '(fci-rule-color "#003f8e")
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(frame-background-mode (quote dark))
+ '(org-return-follows-link t)
  '(package-selected-packages
    (quote
     (sudo-edit org-beautify-theme powerline org-bullets zerodark-theme zenburn-theme which-key virtualenvwrapper use-package tao-theme poet-theme plantuml-mode moe-theme jedi gist flycheck faff-theme elpy doom-themes doom-modeline counsel company-jedi color-theme-modern cmake-mode base16-theme all-the-icons-ivy all-the-icons-dired alect-themes)))
@@ -65,3 +66,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 143 :width normal)))))
+(put 'dired-find-alternate-file 'disabled nil)
