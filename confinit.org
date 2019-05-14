@@ -159,6 +159,14 @@
     ;; Bind recompile F7
     (global-set-key (kbd "<f7>") 'gdb)
 
+    ;; Bind C-c a to org Agenda
+    (global-set-key (kbd "C-c a") 'org-agenda)
+
+    ;; Bind C-c c to configuration file
+    (defun config-visit ()
+      (interactive)
+      (find-file "~/.emacs.d/confinit.org"))
+    (global-set-key (kbd "C-c c") 'config-visit)
   #+END_SRC
 * All the icons
 
@@ -363,4 +371,12 @@
 
     (use-package org-pdfview
       :ensure t)
+  #+END_SRC
+* Reload emacs configuration
+  #+BEGIN_SRC emacs-lisp
+    (defun config-reload ()
+      "Reloads ~/.emacs.d/config.org at runtime"
+      (interactive)
+      (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+    (global-set-key (kbd "C-c r") 'config-reload)
   #+END_SRC
