@@ -40,11 +40,7 @@
                                        ".org_archive::"))
 
    #+END_SRC
-** org-beautify
-   #+BEGIN_SRC emacs-lisp
-     (use-package org-beautify-theme
-       :ensure t)        
-   #+END_SRC
+
 * Auto-complete
   #+BEGIN_SRC emacs-lisp
     (use-package auto-complete 
@@ -379,4 +375,24 @@
       (interactive)
       (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
     (global-set-key (kbd "C-c r") 'config-reload)
+  #+END_SRC
+* Transparent emacs
+  #+BEGIN_SRC emacs-lisp
+    ;;(set-frame-parameter (selected-frame) 'alpha '(<active> . <inactive>))
+    ;;(set-frame-parameter (selected-frame) 'alpha <both>)
+    (set-frame-parameter (selected-frame) 'alpha '(85 . 50))
+    (add-to-list 'default-frame-alist '(alpha . (85 . 50)))
+
+    (defun toggle-transparency ()
+      (interactive)
+      (let ((alpha (frame-parameter nil 'alpha)))
+	(set-frame-parameter
+	 nil 'alpha
+	 (if (eql (cond ((numberp alpha) alpha)
+			((numberp (cdr alpha)) (cdr alpha))
+			;; Also handle undocumented (<active> <inactive>) form.
+			((numberp (cadr alpha)) (cadr alpha)))
+		  100)
+	     '(85 . 50) '(100 . 100)))))
+    (global-set-key (kbd "C-c t") 'toggle-transparency)
   #+END_SRC
