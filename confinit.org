@@ -412,3 +412,15 @@
 
     (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
   #+end_src
+* Elfeed
+  #+begin_src emacs-lisp
+    (use-package elfeed
+      :ensure t)
+
+    (use-package elfeed-org
+      :ensure t)
+
+    (global-set-key (kbd "C-c f") 'elfeed)
+
+    (setq rmh-elfeed-org-files (list "~/nextcloud/elfeed.org"))
+  #+end_src
