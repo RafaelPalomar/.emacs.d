@@ -32,13 +32,20 @@
      ;; Recursively open agenda
      (load-library "find-lisp")
      (setq org-agenda-files
-     (find-lisp-find-files "~/nextcloud/" "\.org$"))
+	   (find-lisp-find-files "~/nextcloud/" "\.org$"))
 
      ;; Archive file based on week
      (setq org-archive-location (concat "~/nextcloud/org-archive/archive-"
-                                       (format-time-string "%Y_%m_%W" (current-time))
-                                       ".org_archive::"))
+					(format-time-string "%Y_%m_%W" (current-time))
+					".org_archive::"))
 
+     ;; Add babel languages
+     (org-babel-do-load-languages
+      'org-babel-load-languages
+      '(
+	(plantuml . t)
+	(shell . t)
+	(python . t)))
    #+END_SRC
 
 * Auto-complete
