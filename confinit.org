@@ -426,7 +426,8 @@
       (elfeed-org)
       (setq rmh-elfeed-org-files (list "~/nextcloud/elfeed.org")))
 
-    (global-set-key (kbd "C-c f") 'elfeed)
-
-
+    (use-package elfeed-goodies
+      :ensure t
+      :config
+      (elfeed-goodies/setup))
   #+end_src
