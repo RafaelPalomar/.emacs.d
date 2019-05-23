@@ -380,7 +380,7 @@
     (defun config-reload ()
       "Reloads ~/.emacs.d/config.org at runtime"
       (interactive)
-      (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+      (org-babel-load-file (expand-file-name "~/.emacs.d/confinit.org")))
     (global-set-key (kbd "C-c r") 'config-reload)
   #+END_SRC
 * Transparent emacs
