@@ -195,11 +195,6 @@
 
     (setq plantuml-jar-path (expand-file-name "~/.emacs.d/plantuml.jar"))
 
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '(
-       (plantuml . t)))
-
     (setq org-babel-default-header-args:plantuml
 	  '((:results . "file")
 	    (:exports . "results")
