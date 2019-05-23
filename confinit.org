@@ -398,12 +398,12 @@
     (use-package org-ref
       :ensure t)
 
-    (setq reftex-default-bibliography '("~/Dropbox/bibliography/references.bib"))
+    (setq reftex-default-bibliography '("~/nextcloud/bibliography/references.bib"))
 
     ;; see org-ref for use of these variables
-    (setq org-ref-bibliography-notes "~/Dropbox/bibliography/notes.org"
-	  org-ref-default-bibliography '("~/Dropbox/bibliography/references.bib")
-	  org-ref-pdf-directory "~/Dropbox/bibliography/bibtex-pdfs/")
+    (setq org-ref-bibliography-notes "~/nextcloud/bibliography/notes.org"
+	  org-ref-default-bibliography '("~/nextcloud/bibliography/references.bib")
+	  org-ref-pdf-directory "~/nextcloud/bibliography/bibtex-pdfs/")
 
     (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
   #+end_src
