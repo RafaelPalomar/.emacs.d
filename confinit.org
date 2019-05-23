@@ -414,11 +414,29 @@
   #+end_src
 * Elfeed
   #+begin_src emacs-lisp
+    ;;functions to support syncing .elfeed between machines
+    ;;makes sure elfeed reads index from disk before launching
+    (defun bjm/elfeed-load-db-and-open ()
+      "Wrapper to load the elfeed db from disk before opening"
+      (interactive)
+      (elfeed-db-load)
+      (elfeed)
+      (elfeed-search-update--force))
+
+    ;;write to disk when quiting
+    (defun bjm/elfeed-save-db-and-bury ()
+      "Wrapper to save the elfeed db to disk before burying buffer"
+      (interactive)
+      (elfeed-db-save)
+      (quit-window))
+
     (use-package elfeed
       :ensure t
       :config
       (setq elfeed-db-directory "~/nextcloud/elfeeddb")
-      (global-set-key (kbd "C-c f") 'elfeed))
+      (global-set-key (kbd "C-c f") 'elfeed)
+      :bind (:map elfeed-search-mode-map
+		  (("q" . bjm/elfeed-save-db-and-bury))))
 
     (use-package elfeed-org
       :ensure t
@@ -430,4 +448,20 @@
       :ensure t
       :config
       (elfeed-goodies/setup))
+
+    ;;functions to support syncing .elfeed between machines
+    ;;makes sure elfeed reads index from disk before launching
+    (defun bjm/elfeed-load-db-and-open ()
+      "Wrapper to load the elfeed db from disk before opening"
+      (interactive)
+      (elfeed-db-load)
+      (elfeed)
+      (elfeed-search-update--force))
+
+    ;;write to disk when quiting
+    (defun bjm/elfeed-save-db-and-bury ()
+      "Wrapper to save the elfeed db to disk before burying buffer"
+      (interactive)
+      (elfeed-db-save)
+      (quit-window))
   #+end_src
