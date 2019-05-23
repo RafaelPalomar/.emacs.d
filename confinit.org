@@ -460,3 +460,12 @@
       (elfeed-db-save)
       (quit-window))
   #+end_src
+* Magithub
+  #+BEGIN_SRC emacs-lisp
+    (use-package magithub
+      :after magit
+      :ensure t
+      :config
+      (magithub-feature-autoinject t)
+      (setq magithub-clone-default-directory "~/src"))
+  #+END_SRC
