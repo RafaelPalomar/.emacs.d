@@ -417,7 +417,8 @@
     (use-package elfeed
       :ensure t
       :config
-      (setq elfeed-db-directory "~/nextcloud/elfeeddb"))
+      (setq elfeed-db-directory "~/nextcloud/elfeeddb")
+      (global-set-key (kbd "C-c f") 'elfeed))
 
     (use-package elfeed-org
       :ensure t
