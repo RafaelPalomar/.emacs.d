@@ -45,6 +45,7 @@
       '(
 	(plantuml . t)
 	(sh . t)
+	(shell . t)
 	(python . t)))
    #+END_SRC
 
