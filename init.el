@@ -28,14 +28,18 @@
  '(custom-enabled-themes (quote (spacemacs-dark)))
  '(custom-safe-themes
    (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" default)))
+    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" default)))
  '(fci-rule-color "#003f8e")
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(frame-background-mode (quote dark))
+ '(org-agenda-files
+   (quote
+    ("/home/aure/nextcloud/elfeed.org" "/home/aure/nextcloud/organizer.org" "/home/aure/nextcloud/bibliography/notes.org" "/home/aure/nextcloud/Work/AIRMed/IKTPluss/IKTPluss.org" "/home/aure/nextcloud/Work/AIRMed/AIRMed.org" "/home/aure/nextcloud/Work/HiPerNav/HiPerNav.org" "/home/aure/nextcloud/Work/Systole/Systole.org" "/home/aure/nextcloud/Work/NorMIT/NorMIT.org" "/home/aure/nextcloud/Work/Infrastructure_Nihon-Kohden/Infrastructure_Nihon-Kohden.org" "/home/aure/nextcloud/Work/Infrastructure_Nihon-Kohden/Solution_NihonKohden_Personvern/graphics.org" "/home/aure/nextcloud/Work/Infrastructure_Machine-Learning/server_instructions/instructions.org" "/home/aure/nextcloud/Work/Infrastructure_Machine-Learning/Infrastructure-ML.org" "/home/aure/nextcloud/Work/Holocare/HoloCare.org" "/home/aure/nextcloud/Work/DeepLearning/fundamentals_deep_learning/notes.org" "/home/aure/nextcloud/Infrastructure/infrastructure.org")))
+ '(org-default-priority 67)
  '(org-return-follows-link t)
  '(package-selected-packages
    (quote
-    (sudo-edit org-beautify-theme powerline org-bullets zerodark-theme zenburn-theme which-key virtualenvwrapper use-package tao-theme poet-theme plantuml-mode moe-theme jedi gist flycheck faff-theme elpy doom-themes doom-modeline counsel company-jedi color-theme-modern cmake-mode base16-theme all-the-icons-ivy all-the-icons-dired alect-themes)))
+    (magithub spacemacs-theme sudo-edit org-beautify-theme powerline org-bullets zerodark-theme zenburn-theme which-key virtualenvwrapper use-package tao-theme poet-theme plantuml-mode moe-theme jedi gist flycheck faff-theme elpy doom-themes doom-modeline counsel company-jedi color-theme-modern cmake-mode base16-theme all-the-icons-ivy all-the-icons-dired alect-themes)))
  '(tool-bar-mode nil)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -65,5 +69,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 143 :width normal)))))
+ '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 100 :width normal)))))
 (put 'dired-find-alternate-file 'disabled nil)
