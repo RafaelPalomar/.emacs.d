@@ -171,7 +171,24 @@
       (interactive)
       (find-file "~/.emacs.d/confinit.org"))
     (global-set-key (kbd "C-c c") 'config-visit)
-  #+END_SRC
+#+END_SRC
+* Open password file
+  #+begin_src emacs-lisp
+    (defun kpcli-console ()
+      "Runs kpcli and opens password file."
+      (interactive)
+      (require 'term)
+      (let* ((cmd "kpcli")
+	     (args "--kdb=/home/aure/nextcloud/pdb2.kdbx")
+	     (switches (split-string-and-unquote args))
+	     (termbuf (apply 'make-term "kpcli console" cmd nil switches)))
+	(set-buffer termbuf)
+	(term-mode)
+	(term-char-mode)
+	(switch-to-buffer termbuf)))
+
+    (global-set-key (kbd "C-c p") 'kpcli-console)
+  #+end_src
 * All the icons
 
 #+BEGIN_SRC emacs-lisp
