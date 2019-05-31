@@ -480,5 +480,15 @@
       :ensure t
       :config
       (magithub-feature-autoinject t)
-      (setq magithub-clone-default-directory "~/src"))
+      (setq magithub-clone-default-directory "~/src/"))
   #+END_SRC
+* Sudo edit 
+  #+begin_src emacs-lisp
+    (use-package sudo-edit
+      :ensure t)
+  #+end_src
+* Eshell
+  #+begin_src emacs-lisp
+    (add-to-list 'eshell-visual-commands "ccmake")
+    (add-to-list 'eshell-visual-commands "dispatch-conf")
+  #+end_src
