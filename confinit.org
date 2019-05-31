@@ -220,11 +220,6 @@
   #+END_SRC
 ** Plantuml org integration
    #+BEGIN_SRC emacs-lisp
-     (org-babel-do-load-languages
-      'org-babel-load-languages
-      '(;; other Babel languages
-	(plantuml . t)))
-
      (setq org-plantuml-jar-path
 	   (expand-file-name "~/.emacs.d/plantuml.jar"))
 
