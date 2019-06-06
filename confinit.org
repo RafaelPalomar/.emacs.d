@@ -487,8 +487,4 @@
     (use-package sudo-edit
       :ensure t)
   #+end_src
-* Eshell
-  #+begin_src emacs-lisp
-    (add-to-list 'eshell-visual-commands "ccmake")
-    (add-to-list 'eshell-visual-commands "dispatch-conf")
-  #+end_src
+
