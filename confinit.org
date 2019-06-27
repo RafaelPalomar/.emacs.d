@@ -3,6 +3,7 @@
 * Repos
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+(setq org-latex-prefer-user-labels t)
 #+END_SRC
 * org-mode
 ** Basic org
