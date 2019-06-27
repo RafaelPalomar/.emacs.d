@@ -419,7 +419,7 @@
 	  org-ref-default-bibliography '("~/nextcloud/bibliography/references.bib")
 	  org-ref-pdf-directory "~/nextcloud/bibliography/bibtex-pdfs/")
 
-    (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
+    (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -xelatex -f %f"))
   #+end_src
 * Elfeed
   #+begin_src emacs-lisp
