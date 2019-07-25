@@ -48,7 +48,29 @@
 	(sh . t)
 	(shell . t)
 	(python . t)))
-   #+END_SRC
+
+     (setcar (nthcdr 4 org-emphasis-regexp-components) 3)
+     (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+
+     ;; Org links
+     ;; have a look at the documentation for extra configuration files needed
+     (setq org-html-validation-link nil)  ;; removes validation link from exported html file
+     (require 'org-protocol)
+     (setq org-capture-templates
+	     '(
+	       ("o" "Link capture" entry
+		(file+headline "~/nextcloud/org-linkz/Linkz.org" "INBOX")
+		"* %a %U"
+		:immediate-finish t)
+     ))
+     (setq org-protocol-default-template-key "o")
+
+    ;; Bind C-c b to bookmarks file
+    (defun bookmarks-visit ()
+      (interactive)
+      (find-file "~/nextcloud/org-linkz/Linkz.org"))
+    (global-set-key (kbd "C-c b") 'bookmarks-visit)
+#+END_SRC
 
 * Auto-complete
   #+BEGIN_SRC emacs-lisp
