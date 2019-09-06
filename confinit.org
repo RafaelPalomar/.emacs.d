@@ -516,4 +516,8 @@
     (use-package sudo-edit
       :ensure t)
   #+end_src
-
+* JSON mode
+#+begin_src emacs-lisp
+  (use-package json-mode
+    :ensure t)
+#+end_src
