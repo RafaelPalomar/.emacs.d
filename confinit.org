@@ -20,64 +20,71 @@
 ** org-customizations
    #+BEGIN_SRC emacs-lisp
 
-      ;; Set TODO-like keywords
-      (setq org-todo-keywords
-	    '((sequence "TODO" "STARTED" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED")))
-      ;; Don't ask confirmation for babel snippets execution. Particularly useful for
-      ;; creating presentations.
-      (setq org-confirm-babel-evaluate nil)
+	   ;; Set TODO-like keywords
+	   (setq org-todo-keywords
+		 '((sequence "TODO" "STARTED" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED")))
+	   ;; Don't ask confirmation for babel snippets execution. Particularly useful for
+	   ;; creating presentations.
+	   (setq org-confirm-babel-evaluate nil)
 
-      ;; Fontify native code inside code blocks in org
-      (setq org-src-fontify-natively t)
+	   ;; Fontify native code inside code blocks in org
+	   (setq org-src-fontify-natively t)
       
-      ;; Org src tab acts natiely
-      (setq org-src-tab-acts-natively t)
+	   ;; Org src tab acts natiely
+	   (setq org-src-tab-acts-natively t)
 
-      ;; Recursively open agenda
-      (load-library "find-lisp")
-      (setq org-agenda-files
-	    (find-lisp-find-files "~/nextcloud/" "\.org$"))
+	   ;; Recursively open agenda
+	   (load-library "find-lisp")
+	   (setq org-agenda-files
+		 (find-lisp-find-files "~/Nextcloud/" "\.org$"))
 
-      ;; Archive file based on week
-      (setq org-archive-location (concat "~/nextcloud/org-archive/archive-"
-					 (format-time-string "%Y_%m_%W" (current-time))
-					 ".org_archive::"))
+	   ;; Archive file based on week
+	   (setq org-archive-location (concat "~/Nextcloud/org-archive/archive-"
+					      (format-time-string "%Y_%m_%W" (current-time))
+					      ".org_archive::"))
 
-      ;; Add babel languages
-      (org-babel-do-load-languages
-       'org-babel-load-languages
-       '(
-	 (plantuml . t)
-	 (sh . t)
-	 (shell . t)
-	 (python . t)))
+	   ;; Add babel languages
+	   (org-babel-do-load-languages
+	    'org-babel-load-languages
+	    '(
+	      (plantuml . t)
+	      (sh . t)
+	      (shell . t)
+	      (python . t)
+	      (latex . t)))
 
-      (setcar (nthcdr 4 org-emphasis-regexp-components) 3)
-      (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+	   (setcar (nthcdr 4 org-emphasis-regexp-components) 3)
+	   (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
 
-      ;; Org links
-      ;; have a look at the documentation for extra configuration files needed
-      (setq org-html-validation-link nil)  ;; removes validation link from exported html file
-      (require 'org-protocol)
-      (setq org-capture-templates
-	      '(
-		("o" "Link capture" entry
-		 (file+headline "~/nextcloud/org-linkz/Linkz.org" "INBOX")
-		 "* %a %U"
-		 :immediate-finish t)
-      ))
-      (setq org-protocol-default-template-key "o")
+	   ;; Org links
+	   ;; have a look at the documentation for extra configuration files needed
+	   (setq org-html-validation-link nil)  ;; removes validation link from exported html file
+	   (require 'org-protocol)
+	   (setq org-capture-templates
+		   '(
+		     ("o" "Link capture" entry
+		      (file+headline "~/Nextcloud/org-linkz/Linkz.org" "INBOX")
+		      "* %a %U"
+		      :immediate-finish t)
+	   ))
+	   (setq org-protocol-default-template-key "o")
 
-     ;; Bind C-c b to bookmarks file
-     (defun bookmarks-visit ()
-       (interactive)
-       (find-file "~/nextcloud/org-linkz/Linkz.org"))
-     (global-set-key (kbd "C-c b") 'bookmarks-visit)
+	  ;; Bind C-c b to bookmarks file
+	  (defun bookmarks-visit ()
+	    (interactive)
+	    (find-file "~/Nextcloud/org-linkz/Linkz.org"))
+	  (global-set-key (kbd "C-c b") 'bookmarks-visit)
 
-     ;; Redraw images on execute
-     (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
+	  ;; Redraw images on execute
+	  (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
 #+END_SRC
+** org-re-veal
+   #+begin_src emacs-lisp
+     (use-package ox-reveal
+       :ensure t)
 
+     (setq org-reveal-root "file:///home/aure/src/reveal.js")
+   #+end_src
 * Auto-complete
   #+BEGIN_SRC emacs-lisp
     (use-package auto-complete 
@@ -208,7 +215,7 @@
       (interactive)
       (require 'term)
       (let* ((cmd "kpcli")
-	     (args "--kdb=/home/aure/nextcloud/pdb2.kdbx")
+	     (args "--kdb=/home/aure/Nextcloud/pdb2.kdbx")
 	     (switches (split-string-and-unquote args))
 	     (termbuf (apply 'make-term "kpcli console" cmd nil switches)))
 	(set-buffer termbuf)
@@ -333,29 +340,35 @@
     (defun toggle-window-split ()
       (interactive)
       (if (= (count-windows) 2)
-          (let* ((this-win-buffer (window-buffer))
-             (next-win-buffer (window-buffer (next-window)))
-             (this-win-edges (window-edges (selected-window)))
-             (next-win-edges (window-edges (next-window)))
-             (this-win-2nd (not (and (<= (car this-win-edges)
-                         (car next-win-edges))
-                         (<= (cadr this-win-edges)
-                         (cadr next-win-edges)))))
-             (splitter
-              (if (= (car this-win-edges)
-                 (car (window-edges (next-window))))
-              'split-window-horizontally
-            'split-window-vertically)))
-        (delete-other-windows)
-        (let ((first-win (selected-window)))
-          (funcall splitter)
-          (if this-win-2nd (other-window 1))
-          (set-window-buffer (selected-window) this-win-buffer)
-          (set-window-buffer (next-window) next-win-buffer)
-          (select-window first-win)
-          (if this-win-2nd (other-window 1))))))
+	  (let* ((this-win-buffer (window-buffer))
+	     (next-win-buffer (window-buffer (next-window)))
+	     (this-win-edges (window-edges (selected-window)))
+	     (next-win-edges (window-edges (next-window)))
+	     (this-win-2nd (not (and (<= (car this-win-edges)
+			 (car next-win-edges))
+			 (<= (cadr this-win-edges)
+			 (cadr next-win-edges)))))
+	     (splitter
+	      (if (= (car this-win-edges)
+		 (car (window-edges (next-window))))
+	      'split-window-horizontally
+	    'split-window-vertically)))
+	(delete-other-windows)
+	(let ((first-win (selected-window)))
+	  (funcall splitter)
+	  (if this-win-2nd (other-window 1))
+	  (set-window-buffer (selected-window) this-win-buffer)
+	  (set-window-buffer (next-window) next-win-buffer)
+	  (select-window first-win)
+	  (if this-win-2nd (other-window 1))))))
 
     (global-set-key (kbd "C-x |") 'toggle-window-split)
+
+    ;; Auto-fill in all text-mode files
+    (add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+    ;; Add warning ban on sudo-edit
+    (sudo-edit-indicator-mode t)
   #+END_SRC
 * Beacon
   #+BEGIN_SRC emacs-lisp
@@ -440,12 +453,12 @@
     (use-package org-ref
       :ensure t)
 
-    (setq reftex-default-bibliography '("~/nextcloud/bibliography/references.bib"))
+    (setq reftex-default-bibliography '("~/Nextcloud/bibliography/references.bib"))
 
     ;; see org-ref for use of these variables
-    (setq org-ref-bibliography-notes "~/nextcloud/bibliography/notes.org"
-	  org-ref-default-bibliography '("~/nextcloud/bibliography/references.bib")
-	  org-ref-pdf-directory "~/nextcloud/bibliography/bibtex-pdfs/")
+    (setq org-ref-bibliography-notes "~/Nextcloud/bibliography/notes.org"
+	  org-ref-default-bibliography '("~/Nextcloud/bibliography/references.bib")
+	  org-ref-pdf-directory "~/Nextcloud/bibliography/bibtex-pdfs/")
 
     (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -xelatex -f %f"))
   #+end_src
@@ -470,7 +483,7 @@
     (use-package elfeed
       :ensure t
       :config
-      (setq elfeed-db-directory "~/nextcloud/elfeeddb")
+      (setq elfeed-db-directory "~/Nextcloud/elfeeddb")
       (global-set-key (kbd "C-c f") 'elfeed)
       :bind (:map elfeed-search-mode-map
 		  (("q" . bjm/elfeed-save-db-and-bury))))
@@ -479,7 +492,7 @@
       :ensure t
       :config
       (elfeed-org)
-      (setq rmh-elfeed-org-files (list "~/nextcloud/elfeed.org")))
+      (setq rmh-elfeed-org-files (list "~/Nextcloud/elfeed.org")))
 
     (use-package elfeed-goodies
       :ensure t
@@ -502,22 +515,28 @@
       (elfeed-db-save)
       (quit-window))
   #+end_src
-* Magithub
-  #+BEGIN_SRC emacs-lisp
-    (use-package magithub
-      :after magit
-      :ensure t
-      :config
-      (magithub-feature-autoinject t)
-      (setq magithub-clone-default-directory "~/src/"))
-  #+END_SRC
 * Sudo edit 
   #+begin_src emacs-lisp
     (use-package sudo-edit
       :ensure t)
   #+end_src
-* JSON mode
+* JSON moden
 #+begin_src emacs-lisp
   (use-package json-mode
     :ensure t)
+#+end_src
+
+* shell-here
+#+begin_src emacs-lisp
+  (use-package shell-here
+    :ensure t)
+#+end_src
+* Avy
+#+begin_src emacs-lisp
+  (use-package avy
+    :ensure t
+    :config
+    (global-set-key (kbd "C-;") 'avy-goto-char)
+    (global-set-key (kbd "C-'") 'avy-goto-char-2)
+    )
 #+end_src
