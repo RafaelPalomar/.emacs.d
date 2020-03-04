@@ -1,15 +1,14 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: No License
+# name: No License OUS
 # key: license
 # binding: direct-keybinding
 # --
-
 /*===============================================================================
 
 Project: $1
-Module: ${2:`(file-name-nondirectory buffer-file-name`}
+Module: ${2:`(file-name-nondirectory buffer-file-name)`}
 
-Copyright (c) ${3:2016}, ${4:Rafael Palomar} <${5:rafaelpalomaravalos@gmail.com}>
+Copyright (c) ${3:2019}, ${4: Oslo University Hospital}
 
 All rights reserved. This is propietary software. In no event shall the author
 be liable for any claim or damages 
