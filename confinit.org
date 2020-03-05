@@ -536,8 +536,7 @@
     :ensure t
     :config
     (global-set-key (kbd "C-;") 'avy-goto-char)
-    (global-set-key (kbd "C-'") 'avy-goto-char-2)
-    )
+   )
 #+end_src
 * Sudo-edit
 #+begin_src emacs-lisp
