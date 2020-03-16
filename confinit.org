@@ -297,12 +297,6 @@
     (use-package systemd
       :ensure t)
   #+END_SRC
-* Doom-modeline
-#+BEGIN_SRC emacs-lisp
-  (use-package doom-modeline
-    :ensure t
-    :init (doom-modeline-mode 1))
-#+END_SRC
 * Misc configurations
   #+BEGIN_SRC emacs-lisp
     ;; Disable menu-bar
@@ -554,4 +548,21 @@
     :ensure t
     :config
     (setq ob-mermaid-cli-path "/home/aure/node_modules/.bin/mmdc"))
+#+END_SRC
+* Doom-modeline
+#+BEGIN_SRC emacs-lisp
+  (use-package doom-modeline
+    :ensure t
+    :init (doom-modeline-mode 1)
+    :config
+    (setq doom-modeline-icon (display-graphic-p))
+    (setq doom-modeline-major-mode-icon t)
+    (setq doom-modeline-buffer-state-icon t)
+    (setq doom-modeline-buffer-modification-icon t)
+   )
+#+END_SRC
+* Doom-themes
+#+BEGIN_SRC emacs-lisp
+  (use-package doom-themes
+    :ensure t)
 #+END_SRC
