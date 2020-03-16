@@ -20,62 +20,62 @@
 ** org-customizations
    #+BEGIN_SRC emacs-lisp
 
-	   ;; Set TODO-like keywords
-	   (setq org-todo-keywords
-		 '((sequence "TODO" "STARTED" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED")))
-	   ;; Don't ask confirmation for babel snippets execution. Particularly useful for
-	   ;; creating presentations.
-	   (setq org-confirm-babel-evaluate nil)
+      ;; Set TODO-like keywords
+      (setq org-todo-keywords
+	    '((sequence "TODO" "STARTED" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED")))
+      ;; Don't ask confirmation for babel snippets execution. Particularly useful for
+      ;; creating presentations.
+      (setq org-confirm-babel-evaluate nil)
 
-	   ;; Fontify native code inside code blocks in org
-	   (setq org-src-fontify-natively t)
-      
-	   ;; Org src tab acts natiely
-	   (setq org-src-tab-acts-natively t)
+      ;; Fontify native code inside code blocks in org
+      (setq org-src-fontify-natively t)
 
-	   ;; Recursively open agenda
-	   (load-library "find-lisp")
-	   (setq org-agenda-files
-		 (find-lisp-find-files "~/Nextcloud/" "\.org$"))
+      ;; Org src tab acts natiely
+      (setq org-src-tab-acts-natively t)
 
-	   ;; Archive file based on week
-	   (setq org-archive-location (concat "~/Nextcloud/org-archive/archive-"
-					      (format-time-string "%Y_%m_%W" (current-time))
-					      ".org_archive::"))
+      ;; Recursively open agenda
+      (load-library "find-lisp")
+      (setq org-agenda-files
+	    (find-lisp-find-files "~/Nextcloud/" "\.org$"))
 
-	   ;; Add babel languages
-	   (org-babel-do-load-languages
-	    'org-babel-load-languages
-	    '(
-	      (plantuml . t)
-	      (shell . t)
-	      (python . t)
-	      (latex . t)))
+      ;; Archive file based on week
+      (setq org-archive-location (concat "~/Nextcloud/org-archive/archive-"
+					 (format-time-string "%Y_%m_%W" (current-time))
+					 ".org_archive::"))
 
-	   (setcar (nthcdr 4 org-emphasis-regexp-components) 3)
-	   (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+      ;; Add babel languages
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '(
+	 (plantuml . t)
+	 (shell . t)
+	 (python . t)
+	 (latex . t)))
 
-	   ;; Org links
-	   ;; have a look at the documentation for extra configuration files needed
-	   (setq org-html-validation-link nil)  ;; removes validation link from exported html file
-	   (require 'org-protocol)
-	   (setq org-capture-templates
-		   '(
-		     ("o" "Link capture" entry
-		      (file+headline "~/Nextcloud/org-linkz/Linkz.org" "INBOX")
-		      "* %a %U"
-		      :immediate-finish t)
-	   ))
-	   (setq org-protocol-default-template-key "o")
+      (setcar (nthcdr 4 org-emphasis-regexp-components) 3)
+      (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
 
-	  ;; Bind C-c b to bookmarks file
-	  (defun bookmarks-visit ()
-	    (interactive)
-	    (find-file "~/Nextcloud/org-linkz/Linkz.org"))
-	  (global-set-key (kbd "C-c b") 'bookmarks-visit)
+      ;; Org links
+      ;; have a look at the documentation for extra configuration files needed
+      (setq org-html-validation-link nil)  ;; removes validation link from exported html file
+      (require 'org-protocol)
+      (setq org-capture-templates
+	      '(
+		("o" "Link capture" entry
+		 (file+headline "~/Nextcloud/org-linkz/Linkz.org" "INBOX")
+		 "* %a %U"
+		 :immediate-finish t)
+      ))
+      (setq org-protocol-default-template-key "o")
 
-	  ;; Redraw images on execute
-	  (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
+     ;; Bind C-c b to bookmarks file
+     (defun bookmarks-visit ()
+       (interactive)
+       (find-file "~/Nextcloud/org-linkz/Linkz.org"))
+     (global-set-key (kbd "C-c b") 'bookmarks-visit)
+
+     ;; Redraw images on execute
+     (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
 #+END_SRC
 ** org-re-veal
    #+begin_src emacs-lisp
