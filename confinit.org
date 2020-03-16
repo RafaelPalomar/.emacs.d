@@ -534,6 +534,9 @@
 #+end_src
 * Eshell
 #+BEGIN_SRC emacs-lisp
+  (use-package eshell-prompt-extras
+    :ensure t)
+
   (require 'esh-module)
   (add-to-list 'eshell-modules-list 'eshell-tramp)
 
