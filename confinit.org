@@ -350,7 +350,10 @@
     (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
     ;; Add warning ban on sudo-edit
-    (sudo-edit-indicator-mode t)
+    (use-package sudo-edit
+      :ensure t
+      :config
+    (sudo-edit-indicator-mode t))
   #+END_SRC
 * Beacon
   #+BEGIN_SRC emacs-lisp
