@@ -535,3 +535,23 @@
     (sudo-edit-indicator-mode t)
     )
 #+end_src
+* Eshell
+#+BEGIN_SRC emacs-lisp
+  (require 'esh-module)
+  (add-to-list 'eshell-modules-list 'eshell-tramp)
+
+  (with-eval-after-load "esh-opt"
+    (autoload 'epe-theme-lambda "eshell-prompt-extras")
+    (setq eshell-highlight-prompt nil
+	  eshell-prompt-function 'epe-theme-lambda))
+#+END_SRC
+* Mermaid
+#+BEGIN_SRC emacs-lisp
+  (use-package mermaid-mode
+    :ensure t)
+
+  (use-package ob-mermaid
+    :ensure t
+    :config
+    (setq ob-mermaid-cli-path "/home/aure/node_modules/.bin/mmdc"))
+#+END_SRC
