@@ -569,3 +569,14 @@
   (use-package doom-themes
     :ensure t)
 #+END_SRC
+* Gnus
+#+BEGIN_SRC emacs-lisp
+  (use-package gnus
+    :ensure t
+    :config
+    (setq gnus-select-method '(nnnil))
+    (setq gnus-secondary-select-methods
+	  '((nntp "news.gwene.org"))
+	  )
+    )
+#+END_SRC
