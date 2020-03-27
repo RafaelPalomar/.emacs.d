@@ -1,10 +1,10 @@
 #+STARTUP: overview 
 #+PROPERTY: header-args :comments yes :results silent
 * Repos
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-(setq org-latex-prefer-user-labels t)
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+    (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+    (setq org-latex-prefer-user-labels t)
+  #+END_SRC
 * org-mode
 ** Basic org
    #+BEGIN_SRC emacs-lisp
@@ -12,7 +12,7 @@
        :ensure t
        :pin org)
 
-        (use-package org-bullets
+     (use-package org-bullets
        :ensure t
        :config
        (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
@@ -20,53 +20,53 @@
 ** org-customizations
    #+BEGIN_SRC emacs-lisp
 
-      ;; Set TODO-like keywords
-      (setq org-todo-keywords
-	    '((sequence "TODO" "STARTED" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED")))
-      ;; Don't ask confirmation for babel snippets execution. Particularly useful for
-      ;; creating presentations.
-      (setq org-confirm-babel-evaluate nil)
+     ;; Set TODO-like keywords
+     (setq org-todo-keywords
+	   '((sequence "TODO" "STARTED" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED")))
+     ;; Don't ask confirmation for babel snippets execution. Particularly useful for
+     ;; creating presentations.
+     (setq org-confirm-babel-evaluate nil)
 
-      ;; Fontify native code inside code blocks in org
-      (setq org-src-fontify-natively t)
+     ;; Fontify native code inside code blocks in org
+     (setq org-src-fontify-natively t)
 
-      ;; Org src tab acts natiely
-      (setq org-src-tab-acts-natively t)
+     ;; Org src tab acts natiely
+     (setq org-src-tab-acts-natively t)
 
-      ;; Recursively open agenda
-      (load-library "find-lisp")
-      (setq org-agenda-files
-	    (find-lisp-find-files "~/Nextcloud/" "\.org$"))
+     ;; Recursively open agenda
+     (load-library "find-lisp")
+     (setq org-agenda-files
+	   (find-lisp-find-files "~/Nextcloud/" "\.org$"))
 
-      ;; Archive file based on week
-      (setq org-archive-location (concat "~/Nextcloud/org-archive/archive-"
-					 (format-time-string "%Y_%m_%W" (current-time))
-					 ".org_archive::"))
+     ;; Archive file based on week
+     (setq org-archive-location (concat "~/Nextcloud/org-archive/archive-"
+					(format-time-string "%Y_%m_%W" (current-time))
+					".org_archive::"))
 
-      ;; Add babel languages
-      (org-babel-do-load-languages
-       'org-babel-load-languages
-       '(
-	 (plantuml . t)
-	 (shell . t)
-	 (python . t)
-	 (latex . t)))
+     ;; Add babel languages
+     (org-babel-do-load-languages
+      'org-babel-load-languages
+      '(
+	(plantuml . t)
+	(shell . t)
+	(python . t)
+	(latex . t)))
 
-      (setcar (nthcdr 4 org-emphasis-regexp-components) 3)
-      (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+     (setcar (nthcdr 4 org-emphasis-regexp-components) 3)
+     (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
 
-      ;; Org links
-      ;; have a look at the documentation for extra configuration files needed
-      (setq org-html-validation-link nil)  ;; removes validation link from exported html file
-      (require 'org-protocol)
-      (setq org-capture-templates
-	      '(
-		("o" "Link capture" entry
-		 (file+headline "~/Nextcloud/org-linkz/Linkz.org" "INBOX")
-		 "* %a %U"
-		 :immediate-finish t)
-      ))
-      (setq org-protocol-default-template-key "o")
+     ;; Org links
+     ;; have a look at the documentation for extra configuration files needed
+     (setq org-html-validation-link nil)  ;; removes validation link from exported html file
+     (require 'org-protocol)
+     (setq org-capture-templates
+	   '(
+	     ("o" "Link capture" entry
+	      (file+headline "~/Nextcloud/org-linkz/Linkz.org" "INBOX")
+	      "* %a %U"
+	      :immediate-finish t)
+	     ))
+     (setq org-protocol-default-template-key "o")
 
      ;; Bind C-c b to bookmarks file
      (defun bookmarks-visit ()
@@ -76,7 +76,7 @@
 
      ;; Redraw images on execute
      (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
-#+END_SRC
+   #+END_SRC
 ** org-re-veal
    #+begin_src emacs-lisp
      (use-package ox-reveal
@@ -90,9 +90,9 @@
       :ensure t
       :init
       (progn
-        (ac-config-default)
-        (global-auto-complete-mode t)
-        ))
+	(ac-config-default)
+	(global-auto-complete-mode t)
+	))
   #+END_SRC
 * Jedi
   #+BEGIN_SRC emacs-lisp
@@ -103,19 +103,19 @@
     (add-hook 'python-mode-hook 'jedi:ac-setup)
   #+END_SRC
 * Interface tweaks
-#+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-message t)
-(tool-bar-mode -1)
-(fset 'yes-or-no-p 'y-or-n-p)
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+    (setq inhibit-startup-message t)
+    (tool-bar-mode -1)
+    (fset 'yes-or-no-p 'y-or-n-p)
+  #+END_SRC
 
 * Which key
   Brings up some help
   #+BEGIN_SRC emacs-lisp
-  (use-package which-key
-	:ensure t 
-	:config
-	(which-key-mode))
+    (use-package which-key
+      :ensure t 
+      :config
+      (which-key-mode))
   #+END_SRC
 
 * Swiper / Ivy / Counsel
@@ -187,10 +187,10 @@
 
 * Yasnippet
   #+BEGIN_SRC emacs-lisp
-	(use-package yasnippet
-	  :ensure t
-	  :init
-	    (yas-global-mode 1))
+    (use-package yasnippet
+      :ensure t
+      :init
+      (yas-global-mode 1))
 
 					    ;    (use-package yasnippet-snippets
 					    ;      :ensure t)
@@ -202,10 +202,10 @@
       :ensure t)      
   #+END_SRC
 * iBuffer
-#+BEGIN_SRC emacs-lispp
+  #+BEGIN_SRC emacs-lispp
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-#+END_SRC
-**
+  #+END_SRC
+  **
 * Personal keymap
   #+BEGIN_SRC emacs-lisp
     ;; Bind C-c C-b to ibuffer
@@ -228,7 +228,7 @@
       (interactive)
       (find-file "~/.emacs.d/confinit.org"))
     (global-set-key (kbd "C-c c") 'config-visit)
-#+END_SRC
+  #+END_SRC
 * Open password file
   #+begin_src emacs-lisp
     (defun kpcli-console ()
@@ -248,21 +248,21 @@
   #+end_src
 * All the icons
 
-#+BEGIN_SRC emacs-lisp
-(use-package all-the-icons 
-:ensure t
-:defer 0.5)
+  #+BEGIN_SRC emacs-lisp
+    (use-package all-the-icons 
+      :ensure t
+      :defer 0.5)
 
-(use-package all-the-icons-ivy
-:ensure t
-  :after (all-the-icons ivy)
-  :custom (all-the-icons-ivy-buffer-commands '(ivy-switch-buffer-other-window ivy-switch-buffer))
-  :config
-  (add-to-list 'all-the-icons-ivy-file-commands 'counsel-dired-jump)
-  (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-library)
-  (all-the-icons-ivy-setup))
+    (use-package all-the-icons-ivy
+      :ensure t
+      :after (all-the-icons ivy)
+      :custom (all-the-icons-ivy-buffer-commands '(ivy-switch-buffer-other-window ivy-switch-buffer))
+      :config
+      (add-to-list 'all-the-icons-ivy-file-commands 'counsel-dired-jump)
+      (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-library)
+      (all-the-icons-ivy-setup))
 
-#+END_SRC
+  #+END_SRC
 * PlantUML
   #+BEGIN_SRC emacs-lisp
     (use-package plantuml-mode
@@ -273,7 +273,7 @@
     (setq org-babel-default-header-args:plantuml
 	  '((:results . "file")
 	    (:exports . "results")
-		(:java . "-Dfile.encoding=UTF-8 -Djava.awt.headless=true")))
+	    (:java . "-Dfile.encoding=UTF-8 -Djava.awt.headless=true")))
   #+END_SRC
 ** Plantuml org integration
    #+BEGIN_SRC emacs-lisp
@@ -312,7 +312,7 @@
       :ensure t
       :init
       (progn
-        (bind-key (kbd "<f9>") 'magit-status)))
+	(bind-key (kbd "<f9>") 'magit-status)))
   #+END_SRC
 * Systemd
   #+BEGIN_SRC emacs-lisp
@@ -345,26 +345,26 @@
       (interactive)
       (if (= (count-windows) 2)
 	  (let* ((this-win-buffer (window-buffer))
-	     (next-win-buffer (window-buffer (next-window)))
-	     (this-win-edges (window-edges (selected-window)))
-	     (next-win-edges (window-edges (next-window)))
-	     (this-win-2nd (not (and (<= (car this-win-edges)
-			 (car next-win-edges))
-			 (<= (cadr this-win-edges)
-			 (cadr next-win-edges)))))
-	     (splitter
-	      (if (= (car this-win-edges)
-		 (car (window-edges (next-window))))
-	      'split-window-horizontally
-	    'split-window-vertically)))
-	(delete-other-windows)
-	(let ((first-win (selected-window)))
-	  (funcall splitter)
-	  (if this-win-2nd (other-window 1))
-	  (set-window-buffer (selected-window) this-win-buffer)
-	  (set-window-buffer (next-window) next-win-buffer)
-	  (select-window first-win)
-	  (if this-win-2nd (other-window 1))))))
+		 (next-win-buffer (window-buffer (next-window)))
+		 (this-win-edges (window-edges (selected-window)))
+		 (next-win-edges (window-edges (next-window)))
+		 (this-win-2nd (not (and (<= (car this-win-edges)
+					     (car next-win-edges))
+					 (<= (cadr this-win-edges)
+					     (cadr next-win-edges)))))
+		 (splitter
+		  (if (= (car this-win-edges)
+			 (car (window-edges (next-window))))
+		      'split-window-horizontally
+		    'split-window-vertically)))
+	    (delete-other-windows)
+	    (let ((first-win (selected-window)))
+	      (funcall splitter)
+	      (if this-win-2nd (other-window 1))
+	      (set-window-buffer (selected-window) this-win-buffer)
+	      (set-window-buffer (next-window) next-win-buffer)
+	      (select-window first-win)
+	      (if this-win-2nd (other-window 1))))))
 
     (global-set-key (kbd "C-x |") 'toggle-window-split)
 
@@ -375,7 +375,7 @@
     (use-package sudo-edit
       :ensure t
       :config
-    (sudo-edit-indicator-mode t))
+      (sudo-edit-indicator-mode t))
   #+END_SRC
 * Beacon
   #+BEGIN_SRC emacs-lisp
@@ -388,12 +388,12 @@
 * Electric pair
   #+BEGIN_SRC emacs-lisp
     (setq electric-pair-pairs '(
-                                (?\( .?\))
-                                (?\[ .?\])
-                                (?\{ .?\})
-                                (?\" .?\")
-                                (?\' .?\')
-                                ))
+				(?\( .?\))
+				(?\[ .?\])
+				(?\{ .?\})
+				(?\" .?\")
+				(?\' .?\')
+				))
     (electric-pair-mode t)
   #+END_SRC
 * Hungry-delete
@@ -528,77 +528,80 @@
       :ensure t)
   #+end_src
 * JSON moden
-#+begin_src emacs-lisp
-  (use-package json-mode
-    :ensure t)
-#+end_src
+  #+begin_src emacs-lisp
+    (use-package json-mode
+      :ensure t)
+  #+end_src
 
 * shell-here
-#+begin_src emacs-lisp
-  (use-package shell-here
-    :ensure t)
-#+end_src
+  #+begin_src emacs-lisp
+    (use-package shell-here
+      :ensure t)
+  #+end_src
 * Avy
-#+begin_src emacs-lisp
-  (use-package avy
-    :ensure t
-    :config
-    (global-set-key (kbd "C-;") 'avy-goto-char)
-   )
-#+end_src
+  #+begin_src emacs-lisp
+    (use-package avy
+      :ensure t
+      :config
+      (global-set-key (kbd "C-;") 'avy-goto-char)
+      )
+  #+end_src
 * Sudo-edit
-#+begin_src emacs-lisp
-  (use-package sudo-edit
-    :ensure t
-    :config
-    (sudo-edit-indicator-mode t)
-    )
-#+end_src
+  #+begin_src emacs-lisp
+    (use-package sudo-edit
+      :ensure t
+      :config
+      (sudo-edit-indicator-mode t)
+      )
+  #+end_src
 * Eshell
-#+BEGIN_SRC emacs-lisp
-  (use-package eshell-prompt-extras
-    :ensure t)
+  #+BEGIN_SRC emacs-lisp
+    (use-package eshell-prompt-extras
+      :ensure t)
 
-  (with-eval-after-load "esh-opt"
-    (autoload 'epe-theme-lambda "eshell-prompt-extras")
-    (setq eshell-highlight-prompt nil
-	  eshell-prompt-function 'epe-theme-lambda))
-#+END_SRC
+    (with-eval-after-load "esh-opt"
+      (autoload 'epe-theme-lambda "eshell-prompt-extras")
+      (setq eshell-highlight-prompt nil
+	    eshell-prompt-function 'epe-theme-lambda))
+
+    (add-hook 'eshell-mode-hook
+	      (lambda () (local-set-key (kbd "M-r") 'counsel-esh-history)))
+  #+END_SRC
 * Mermaid
-#+BEGIN_SRC emacs-lisp
-  (use-package mermaid-mode
-    :ensure t)
+  #+BEGIN_SRC emacs-lisp
+    (use-package mermaid-mode
+      :ensure t)
 
-  (use-package ob-mermaid
-    :ensure t
-    :config
-    (setq ob-mermaid-cli-path "/home/aure/node_modules/.bin/mmdc"))
-#+END_SRC
+    (use-package ob-mermaid
+      :ensure t
+      :config
+      (setq ob-mermaid-cli-path "/home/aure/node_modules/.bin/mmdc"))
+  #+END_SRC
 * Doom-modeline
-#+BEGIN_SRC emacs-lisp
-  (use-package doom-modeline
-    :ensure t
-    :init (doom-modeline-mode 1)
-    :config
-    (setq doom-modeline-icon t)
-    (setq doom-modeline-major-mode-icon t)
-    (setq doom-modeline-buffer-state-icon t)
-    (setq doom-modeline-buffer-modification-icon t)
-   )
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+    (use-package doom-modeline
+      :ensure t
+      :init (doom-modeline-mode 1)
+      :config
+      (setq doom-modeline-icon t)
+      (setq doom-modeline-major-mode-icon t)
+      (setq doom-modeline-buffer-state-icon t)
+      (setq doom-modeline-buffer-modification-icon t)
+      )
+  #+END_SRC
 * Doom-themes
-#+BEGIN_SRC emacs-lisp
-  (use-package doom-themes
-    :ensure t)
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+    (use-package doom-themes
+      :ensure t)
+  #+END_SRC
 * Gnus
-#+BEGIN_SRC emacs-lisp
-  (use-package gnus
-    :ensure t
-    :config
-    (setq gnus-select-method '(nnnil))
-    (setq gnus-secondary-select-methods
-	  '((nntp "news.gwene.org"))
-	  )
-    )
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+    (use-package gnus
+      :ensure t
+      :config
+      (setq gnus-select-method '(nnnil))
+      (setq gnus-secondary-select-methods
+	    '((nntp "news.gwene.org"))
+	    )
+      )
+  #+END_SRC
