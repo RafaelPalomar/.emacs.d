@@ -629,3 +629,10 @@ This configuration is by Protesilaos Stavrou
 	     ("M-n" . rg-next-file)
 	     ("M-p" . rg-prev-file)))
   #+END_SRC
+* Dired-related
+#+BEGIN_SRC emacs-lisp
+  (use-package dired-quick-sort
+    :ensure t
+    :config
+    (dired-quick-sort-setup))
+#+END_SRC
