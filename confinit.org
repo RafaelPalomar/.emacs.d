@@ -582,6 +582,9 @@
     (use-package gnus
       :ensure t
       :config
+      (setq message-directory "~/Nextcloud/mail")
+      (setq gnus-directory "~/Nextcloud/news")
+      (setq nnfolder-directory "~/Nextcloud/mail/archive")
       (setq gnus-select-method '(nnnil))
       (setq gnus-secondary-select-methods
 	    '((nntp "news.gwene.org"))
