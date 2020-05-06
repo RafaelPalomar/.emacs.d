@@ -549,6 +549,14 @@
 
     (add-hook 'eshell-mode-hook
 	      (lambda () (local-set-key (kbd "M-r") 'counsel-esh-history)))
+
+
+    ;; Make work tramps sudo
+    (add-to-list 'eshell-modules-list 'eshell-tramp)
+    (setq password-cache t) ; enable password caching
+    (setq password-cache-expiry 3600) ; for one hour (time in secs)
+
+
   #+END_SRC
 * Mermaid
   #+BEGIN_SRC emacs-lisp
