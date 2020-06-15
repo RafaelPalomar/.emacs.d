@@ -8,9 +8,9 @@
 Project: $1
 Module: ${2:`(file-name-nondirectory buffer-file-name)`}
 
-Copyright (c) ${3:2019}, ${4: Oslo University Hospital}
+Copyright (c) ${3:2020}, ${4: Oslo University Hospital}.
 
 All rights reserved. This is propietary software. In no event shall the author
-be liable for any claim or damages 
+be liable for any claim or damages.
 
 ===============================================================================*/
