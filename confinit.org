@@ -596,11 +596,27 @@
       (setq message-directory "~/Nextcloud/mail")
       (setq gnus-directory "~/Nextcloud/news")
       (setq nnfolder-directory "~/Nextcloud/mail/archive")
-      (setq gnus-select-method '(nnnil))
+
+      ;;Google mail palomar.research
+      (setq user-mail-address    "palomar.research@gmail.com"
+	    user-full-name       "Rafael Palomar")
+
+      (setq gnus-select-method '(nnnil ""))
       (setq gnus-secondary-select-methods
-	    '((nntp "news.gwene.org"))
-	    )
+	    '((nntp "news.gwene.org")
+	      (nnmaildir "palomar.research"
+			 (directory "~/.mail/palomar.research/"))
+	      ))
+
+      (setq send-mail-function 'smtpmail-send-it)
+      (setq smtpmail-smtp-server "smtp.gmail.com")
+      (setq smtpmail-smtp-service 587)
+
+
+      (setq mm-text-html-renderer 'gnus-w3m)
+      (setq gnus-inhibit-images nil)
       )
+
   #+END_SRC
 * RG (RipGrep)
 This configuration is by Protesilaos Stavrou
