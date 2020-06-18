@@ -76,6 +76,9 @@
 
      ;; Redraw images on execute
      (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
+
+     ;; Org-tempo
+     (require 'org-tempo)
    #+END_SRC
 ** org-re-veal
    #+begin_src emacs-lisp
