@@ -723,3 +723,10 @@ This configuration is by Protesilaos Stavrou
 					(substring contents begin (match-end 0))))))
 		       (org-roam--get-title-or-slug file))))
   #+end_src
+* Org-capture
+  #+begin_src emacs-lisp
+    (setq org-capture-templates
+      '(
+	("m" "TODO from Mail" entry (file+headline "~/Nextcloud/inbox.org" "Inbox") 
+	 "* TODO %?, Link: %a")))
+  #+end_src
