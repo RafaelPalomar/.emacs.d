@@ -593,9 +593,10 @@
     (use-package gnus
       :ensure t
       :config
-      (setq message-directory "~/Nextcloud/mail")
-      (setq gnus-directory "~/Nextcloud/news")
-      (setq nnfolder-directory "~/Nextcloud/mail/archive")
+      (setq message-directory "~/Nextcloud/gnus/mail")
+      (setq gnus-home-directory "~/Nextcloud/gnus")
+      (setq gnus-directory "~/Nextcloud/gnus/News")
+      (setq nnfolder-directory "~/Nextcloud/gnus/mail/archive")
 
       ;;Google mail palomar.research
       (setq user-mail-address    "palomar.research@gmail.com"
